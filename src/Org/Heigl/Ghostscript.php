@@ -301,6 +301,7 @@ class Org_Heigl_Ghostscript
         }
         $string  = Org_Heigl_Ghostscript::getGsPath ();
         $string .= ' -dSAFER -dQUIET -dNOPLATFONTS -dNOPAUSE -dBATCH';
+	$string .= ' sPaperSize' . $this -> getPapersize();
         $string .= ' -sOutputFile="' . $this -> getOutputFile () . '.' . $this -> getDevice () -> getFileEnding () . '"';
         $string.=  $this -> getDevice () -> getParameterString ();
         $string .= ' -r' . $this -> getResolution ();
@@ -438,6 +439,37 @@ class Org_Heigl_Ghostscript
     public function getResolution () {
         return $this -> _resolution;
     }
+
+    /**
+     * Set the paer size
+     *
+     * @param string papersize
+     *
+     * @return Org_Heigl_Ghostscript
+     */
+    public function setPapersize ( $size ) {
+
+        $this -> _papersize = $size;
+        return $this;
+
+    }
+
+    /**
+     * Store the paper size
+     *
+     * @var string $_papersize
+     */
+    protected $_papersize = "letter";
+
+    /**
+     * Get the paper size
+     *
+     * @return string
+     */
+    public function getPapersize () {
+        return $this -> _papersize;
+    }
+
 
     /**
      * Set the output-device
